@@ -15,11 +15,31 @@
             </div>
             <div>
                 <label for="password">Password</label>
-                <input type="password" id="password" name="password">
+                <input type="password" id="password" minlength="6" name="password">
             </div>
+            <hr>
             <div>
-                <button type="submit">Create Account</button>
+                <label for="fullname">Full Name</label>
+                <input type="text" id="fullname" name="fullname">
             </div>
+
+            <div>
+                <label for="street">Street</label>
+                <input type="text" id="street" name="street">
+            </div>
+
+            <div>
+                <label for="postalCode">Postal Code</label>
+                <input type="text" minlength="5" maxlength="5" id="postalCode" name="postalCode">
+            </div>
+        
+            <div>
+                <label for="city">City</label>
+                <input type="text" id="city" name="city">
+            </div>
+
+            <button class="btn" type="submit">Create Account</button>
+            <p id="switch-form"><a href="/login">Login instead</a></p>
         </form>
     </main>
 
