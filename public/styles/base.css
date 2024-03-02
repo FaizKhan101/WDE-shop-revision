@@ -87,3 +87,11 @@ a {
   }
 }
 
+.alert {
+  border-radius: var(--border-radius-small);
+  padding: var(--space-2) var(--space-4);
+  margin: var(--space-2) auto;
+  background-color: var(--color-error-100);
+  color: var(--color-error-500);
+  text-align: center;
+}
