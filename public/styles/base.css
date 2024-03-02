@@ -3,7 +3,7 @@
 }
 
 html {
-  font-family: sans-serif;
+  font-family: "Montserrat", "sans-serif";
 
   --color-gray-50: rgb(243, 236, 230);
   --color-gray-100: rgb(207, 201, 195);
@@ -60,7 +60,7 @@ ol {
 
 a {
   text-decoration: none;
-  color: var(--color-primary-500);
+  color: var(--color-primary-400);
 }
 
 .btn {
