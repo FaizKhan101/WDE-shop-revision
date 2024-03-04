@@ -1,7 +1,12 @@
 const Product = require("../models/product.model")
 
-exports.getProducts = (req, res, next) => {
-    res.render("admin/products/all-products")
+exports.getProducts = async (req, res, next) => {
+    try {
+        const products = await Product.findAll()
+        res.render("admin/products/all-products", { products })
+    } catch (error) {
+        return next(error)
+    }
 }
 
 exports.getNewProduct = (req, res, next) => {
@@ -13,8 +18,11 @@ exports.createProduct = async (req, res, next) => {
         ...req.body,
         image: req.file.filename
     })
-
-    await product.save()
+    try {
+        await product.save()
+    } catch (error) {
+        return next(error)
+    }
 
     res.redirect("/admin/products")
 }
