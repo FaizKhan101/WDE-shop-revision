@@ -1,3 +1,4 @@
+const { ObjectId } = require("mongodb");
 const db = require("../data/database")
 
 class Product {
@@ -31,6 +32,15 @@ class Product {
         return products.map(function(productDoc)  {
             return new Product(productDoc)
         })
+    }
+
+    static async findById(prodId) {
+        try {
+            return db.getDb().collection("products").findOne({ _id: new ObjectId(prodId) })
+        } catch (error) {
+            error.code = 500
+            throw new Error("Could not find product with given id.")
+        }
     }
 }
 

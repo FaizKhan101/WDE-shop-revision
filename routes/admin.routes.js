@@ -11,5 +11,9 @@ router.get("/products/new", adminController.getNewProduct)
 
 router.post("/products",configuredMulterMiddleware, adminController.createProduct)
 
+router.get("/products/:id", adminController.getUpdateProduct)
+
+router.post("/products/:id", adminController.postUpdateProduct)
+
 module.exports = router
 
