@@ -8,8 +8,7 @@ class Product {
         this.price = +productData.price;
         this.description = productData.description;
         this.image = productData.image;
-        this.imagePath = `product-data/images/${productData.image}`;
-        this.imageUrl = `products/assets/images/${productData.image}`
+        this.updateImageData()
         if (productData._id) {
             this.id = productData._id.toString();
         }
@@ -24,7 +23,25 @@ class Product {
             image: this.image
         }
 
-        return db.getDb().collection("products").insertOne(productData)
+        if (this.id) {
+            if (!this.image) {
+                delete productData.image
+            }
+            return db.getDb().collection("products").updateOne({ _id: new ObjectId(this.id) }, { $set: productData })
+        }else {
+            return db.getDb().collection("products").insertOne(productData)
+        }
+
+    }
+
+    updateImageData() {
+        this.imagePath = `product-data/images/${this.image}`;
+        this.imageUrl = `products/assets/images/${this.image}`
+    }
+
+    replaceImage(newImage) {
+        this.image = newImage
+        this.updateImageData()
     }
 
     static async findAll() {
@@ -36,7 +53,8 @@ class Product {
 
     static async findById(prodId) {
         try {
-            return db.getDb().collection("products").findOne({ _id: new ObjectId(prodId) })
+            const product= await  db.getDb().collection("products").findOne({ _id: new ObjectId(prodId) })
+            return new Product(product)
         } catch (error) {
             error.code = 500
             throw new Error("Could not find product with given id.")

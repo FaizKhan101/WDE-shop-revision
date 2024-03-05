@@ -13,7 +13,7 @@ router.post("/products",configuredMulterMiddleware, adminController.createProduc
 
 router.get("/products/:id", adminController.getUpdateProduct)
 
-router.post("/products/:id", adminController.postUpdateProduct)
+router.post("/products/:id", configuredMulterMiddleware ,adminController.postUpdateProduct)
 
 module.exports = router
 
