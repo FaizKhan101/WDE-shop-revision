@@ -60,6 +60,15 @@ class Product {
             throw new Error("Could not find product with given id.")
         }
     }
+
+    static deleteProductById(prodId) {
+        try {
+            return db.getDb().collection("products").deleteOne({ _id: new ObjectId(prodId) })
+        } catch (error) {
+            error.code = 404
+            throw new Error("Deleting product failed!")
+        }
+    }
 }
 
 module.exports = Product

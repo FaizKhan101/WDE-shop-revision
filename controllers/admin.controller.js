@@ -55,3 +55,14 @@ exports.postUpdateProduct = async (req, res, next) => {
         next(error)
     }
 }
+
+exports.deleteProduct = async (req, res, next) => {
+    const prodId = req.params.id
+
+    try {
+        await Product.deleteProductById(prodId)
+        res.redirect("/admin/products")
+    } catch (error) {
+        next(error)
+    }
+}
