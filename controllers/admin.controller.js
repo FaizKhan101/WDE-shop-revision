@@ -61,7 +61,7 @@ exports.deleteProduct = async (req, res, next) => {
 
     try {
         await Product.deleteProductById(prodId)
-        res.redirect("/admin/products")
+        res.json({message: "Product deleted."})
     } catch (error) {
         next(error)
     }
