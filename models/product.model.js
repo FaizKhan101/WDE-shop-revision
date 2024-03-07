@@ -56,8 +56,8 @@ class Product {
             const product= await  db.getDb().collection("products").findOne({ _id: new ObjectId(prodId) })
             return new Product(product)
         } catch (error) {
-            error.code = 500
-            throw new Error("Could not find product with given id.")
+            error.code = 404
+            throw error
         }
     }
 
@@ -66,7 +66,7 @@ class Product {
             return db.getDb().collection("products").deleteOne({ _id: new ObjectId(prodId) })
         } catch (error) {
             error.code = 404
-            throw new Error("Deleting product failed!")
+            throw error
         }
     }
 }
