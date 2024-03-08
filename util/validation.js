@@ -19,8 +19,8 @@ const userDetailsAreValid = (
     password.trim().length >= 6 &&
     !isEmpty(fullname) &&
     !isEmpty(street) &&
-    isEmpty(postalCode) &&
-    isEmpty(city)
+    !isEmpty(postalCode) &&
+    !isEmpty(city)
   );
 };
 
