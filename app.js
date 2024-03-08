@@ -8,6 +8,7 @@ const baseRoutes = require("./routes/base.routes");
 const authRoutes = require("./routes/auth.routes");
 const productsRoutes = require("./routes/products.routes");
 const adminRoutes = require("./routes/admin.routes")
+const cartRoutes = require("./routes/cart.routes")
 
 const db = require("./data/database");
 const addCsrfTokenMiddleware = require("./middlewares/csrf-token");
@@ -23,6 +24,7 @@ app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 
 app.use(express.urlencoded({ extended: false }));
+app.use(express.json())
 app.use(express.static(path.join(__dirname, "public")));
 app.use("/admin", express.static(path.join(__dirname, "product-data/images")))
 app.use(express.static(path.join(__dirname, "product-data/images")))
@@ -40,6 +42,7 @@ app.use(cartMiddleware)
 app.use(baseRoutes);
 app.use(authRoutes);
 app.use(productsRoutes);
+app.use("/cart", cartRoutes)
 app.use(protectRoutesMiddleware)
 app.use("/admin", adminRoutes)
 
